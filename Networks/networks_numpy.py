@@ -6,7 +6,7 @@ from Networks.utils import *
 from Networks.network_modules_numpy import NetworkModule
 
 
-def compute_returns(seed, environment, network, num_eps_samples, num_env_rollouts=2):
+def compute_returns(seed, environment, network, num_eps_samples, num_env_rollouts=4):
     """
 
     :param seed:
@@ -538,13 +538,13 @@ class EvolutionaryOptimizer:
 #
 #es_optim = EvolutionaryOptimizer(
 #    spinal_net, environment_id=env_id,
-#    learning_rate=0.01, epsilon_samples=80, num_workers=10)
+#    learning_rate=0.01, epsilon_samples=128, num_workers=16)
 #
 #import pickle
 #
 #for _i in range(2000):
 #    if _i%10==0:
-#        with open("save_ESnet.pkl", "wb") as f:
+#        with open("save_ESnetTURN.pkl", "wb") as f:
 #            pickle.dump(es_optim, f)
 #    es_optim.update(_i)
 

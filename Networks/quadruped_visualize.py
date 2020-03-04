@@ -3,7 +3,7 @@ from Networks.networks_numpy import *
 
 import pybullet_envs
 import rex_gym
-env_id = "RexWalk-v0"
+env_id = "RexTurn-v0"
 envrn = gym.make(env_id)
 
 import pickle
