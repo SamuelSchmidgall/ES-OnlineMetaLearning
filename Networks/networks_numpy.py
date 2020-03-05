@@ -526,27 +526,27 @@ class EvolutionaryOptimizer:
         print(avg_return_rec)
 
 
-#import pybullet_envs
-#import rex_gym
-#
-#env_id = "RexWalk-v0"
-#envrn = gym.make(env_id)
-#envrn.reset()
-#
-#spinal_net = EligibilityModulatedNet(
-#    envrn.observation_space.shape[0], envrn.action_space.shape[0], action_noise_std=0.001)
-#
-#es_optim = EvolutionaryOptimizer(
-#    spinal_net, environment_id=env_id,
-#    learning_rate=0.01, epsilon_samples=128, num_workers=16)
-#
-#import pickle
-#
-#for _i in range(2000):
-#    if _i%10==0:
-#        with open("save_ESnetTURN.pkl", "wb") as f:
-#            pickle.dump(es_optim, f)
-#    es_optim.update(_i)
+import pybullet_envs
+import rex_gym
+
+env_id = "RexWalk-v0"
+envrn = gym.make(env_id)
+envrn.reset()
+
+spinal_net = EligibilityModulatedNet(
+    envrn.observation_space.shape[0], envrn.action_space.shape[0], action_noise_std=0.001)
+
+es_optim = EvolutionaryOptimizer(
+    spinal_net, environment_id=env_id,
+    learning_rate=0.01, epsilon_samples=128, num_workers=16)
+
+import pickle
+
+for _i in range(2000):
+    if _i%10==0:
+        with open("/home/sschmidg/Dropbox/save_ESnetWALK.pkl", "wb") as f:
+            pickle.dump(es_optim, f)
+    es_optim.update(_i)
 
 
 
