@@ -140,7 +140,6 @@ class ESNetwork:
             self.params[_param].update_params(param_sample, add_eps=add_eps)
 
 
-
 class CDPNet(ESNetwork):
     def __init__(self, input_size, output_size, noise_std=0.01,
             action_noise_std=None, num_eps_samples=64, sample_type="antithetic"):
@@ -162,13 +161,13 @@ class CDPNet(ESNetwork):
         self.recur_plastic_ff1 = \
             NetworkModule(self.ff_connectivity_type, recur_ff1_meta)
         self.params.append(self.recur_plastic_ff1)
-        recur_ff2_meta = {
-            "clip":1, "activation": identity, "input_size": 64, "output_size": 32}
-        self.recur_plastic_ff2 = \
-            NetworkModule(self.ff_connectivity_type, recur_ff2_meta)
-        self.params.append(self.recur_plastic_ff2)
+        #recur_ff2_meta = {
+        #    "clip":1, "activation": identity, "input_size": 64, "output_size": 32}
+        #self.recur_plastic_ff2 = \
+        #    NetworkModule(self.ff_connectivity_type, recur_ff2_meta)
+        #self.params.append(self.recur_plastic_ff2)
         recur_ff3_meta = {
-            "clip":1, "activation": identity, "input_size": 32, "output_size": output_size}
+            "clip":1, "activation": identity, "input_size": 64, "output_size": output_size}
         self.recur_plastic_ff3 = \
             NetworkModule(self.ff_connectivity_type, recur_ff3_meta)
         self.params.append(self.recur_plastic_ff3)
@@ -208,16 +207,15 @@ class CDPNet(ESNetwork):
         #gated_activity2 = np.where(1/(1 + np.exp(
         #    -self.gate_ff2.forward(gated_activity1))) >= 0.5, 1.0, 0.0)
 
-
         pre_synaptic_ff1 = x
         post_synaptic_ff1 = np.tanh(
             self.recur_plastic_ff1.forward(pre_synaptic_ff1)) #* gated_activity1
 
-        pre_synaptic_ff2 = post_synaptic_ff1
-        post_synaptic_ff2 = np.tanh(
-            self.recur_plastic_ff2.forward(pre_synaptic_ff2)) #* gated_activity2
+        #pre_synaptic_ff2 = post_synaptic_ff1
+        #post_synaptic_ff2 = np.tanh(
+        #    self.recur_plastic_ff2.forward(pre_synaptic_ff2)) #* gated_activity2
 
-        pre_synaptic_ff3 = post_synaptic_ff2
+        pre_synaptic_ff3 = post_synaptic_ff1
         post_synaptic_ff3 = \
             self.recur_plastic_ff3.forward(pre_synaptic_ff3)
 
@@ -225,8 +223,6 @@ class CDPNet(ESNetwork):
             x += np.random.randn(*x.shape)*self.action_noise_std
 
         return post_synaptic_ff3
-
-
 
 
 class EvolutionaryOptimizer:
@@ -336,11 +332,17 @@ if __name__ == "__main__":
 
     spinal_net = CDPNet(
         envrn.observation_space.shape[0],
-        envrn.action_space.shape[0], action_noise_std=0.001)
+        envrn.action_space.shape[0],
+        action_noise_std=0.001
+    )
 
     es_optim = EvolutionaryOptimizer(
-        spinal_net, environment_id=env_id,
-        learning_rate=0.01, epsilon_samples=48, num_workers=2)
+        spinal_net,
+        environment_id=env_id,
+        learning_rate=0.01,
+        epsilon_samples=48,
+        num_workers=2
+    )
 
     import pickle
     reward_list = list()
