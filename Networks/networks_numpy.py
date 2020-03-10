@@ -430,6 +430,94 @@ class EligibilityModulatedNet(ESNetwork):
 
 
 
+class CDPNet(ESNetwork):
+    def __init__(self, input_size, output_size, noise_std=0.01,
+            action_noise_std=None, num_eps_samples=64, sample_type="antithetic"):
+        """
+        Eligibility Network with reward modulated plastic weights
+        :param input_size: (int) size of observation space
+        :param output_size: (int) size of action space
+        :param num_eps_samples: (int) number of epsilon samples (population size)
+        :param sample_type: (str) network noise sampling type
+        """
+        self.params = list()  # list of parameters to update
+        self.input_size = input_size  # observation space dimensionality
+        self.output_size = output_size  # action space dimensionality
+        self.action_noise_std = action_noise_std  # action noise standard deviation
+        self.ff_connectivity_type = "linear" #"eligibility"  # connectivity type -- eligibility
+
+        recur_ff1_meta = {
+            "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
+        self.recur_plastic_ff1 = \
+            NetworkModule(self.ff_connectivity_type, recur_ff1_meta)
+        self.params.append(self.recur_plastic_ff1)
+        recur_ff2_meta = {
+            "clip":1, "activation": identity, "input_size": 32, "output_size": 32}
+        self.recur_plastic_ff2 = \
+            NetworkModule(self.ff_connectivity_type, recur_ff2_meta)
+        self.params.append(self.recur_plastic_ff2)
+        recur_ff3_meta = {
+            "clip":1, "activation": identity, "input_size": 32, "output_size": output_size}
+        self.recur_plastic_ff3 = \
+            NetworkModule(self.ff_connectivity_type, recur_ff3_meta)
+        self.params.append(self.recur_plastic_ff3)
+
+        gate_ff1_meta = {
+            "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
+        self.gate_ff1 = \
+            NetworkModule(self.ff_connectivity_type, gate_ff1_meta)
+        self.params.append(self.gate_ff1)
+        gate_ff2_meta = {
+            "clip":1, "activation": identity, "input_size": 32, "output_size": 32}
+        self.gate_ff2 = \
+            NetworkModule(self.ff_connectivity_type, gate_ff2_meta)
+        self.params.append(self.gate_ff2)
+
+        super(CDPNet, self).__init__(noise_std=noise_std,
+            params=self.params, num_eps_samples=num_eps_samples, sample_type=sample_type)
+
+    def reset(self):
+        """
+        Reset inter-lifetime network parameters
+        :return: None
+        """
+        for _param in self.params:
+            _param.reset()
+
+    def forward(self, x):
+        """
+        Forward propagate input value
+        :param x: (ndarray) state input
+        :return: (ndarray) post synaptic activity at final layer
+        """
+        pre_synaptic_gate1 = x
+        gated_activity1 = np.where(1/(1 + np.exp(
+            -self.gate_ff1.forward(pre_synaptic_gate1))) >= 0.5, 1.0, 0.0)
+
+        gated_activity2 = np.where(1/(1 + np.exp(
+            -self.gate_ff2.forward(gated_activity1))) >= 0.5, 1.0, 0.0)
+
+
+        pre_synaptic_ff1 = x
+        post_synaptic_ff1 = np.tanh(
+            self.recur_plastic_ff1.forward(pre_synaptic_ff1)) * gated_activity1
+
+        pre_synaptic_ff2 = post_synaptic_ff1
+        post_synaptic_ff2 = np.tanh(
+            self.recur_plastic_ff2.forward(pre_synaptic_ff2)) * gated_activity2
+
+        pre_synaptic_ff3 = post_synaptic_ff2
+        post_synaptic_ff3 = \
+            self.recur_plastic_ff3.forward(pre_synaptic_ff3)
+
+        if self.action_noise_std is not None:
+            x += np.random.randn(*x.shape)*self.action_noise_std
+
+        return post_synaptic_ff3
+
+
+
+
 class EvolutionaryOptimizer:
     def __init__(self, network, num_workers=2, epsilon_samples=48,
             environment_id="Pendulum-v0", learning_rate=0.001, weight_decay=0.01):
@@ -527,24 +615,23 @@ class EvolutionaryOptimizer:
 
 
 import pybullet_envs
-import rex_gym
 
-env_id = "RexWalk-v0"
+env_id = "HopperBulletEnv-v0"
 envrn = gym.make(env_id)
 envrn.reset()
 
-spinal_net = EligibilityModulatedNet(
+spinal_net = CDPNet(
     envrn.observation_space.shape[0], envrn.action_space.shape[0], action_noise_std=0.001)
 
 es_optim = EvolutionaryOptimizer(
     spinal_net, environment_id=env_id,
-    learning_rate=0.01, epsilon_samples=128, num_workers=16)
+    learning_rate=0.01, epsilon_samples=64, num_workers=4)
 
 import pickle
 
 for _i in range(2000):
     if _i%10==0:
-        with open("/home/sschmidg/Dropbox/save_ESnetWALK.pkl", "wb") as f:
+        with open("save_ESnetWALK.pkl", "wb") as f:
             pickle.dump(es_optim, f)
     es_optim.update(_i)
 
