@@ -191,6 +191,11 @@ register(id='HalfCheetahBulletEnv-v0',
          max_episode_steps=1000,
          reward_threshold=3000.0)
 
+register(id='CrippledHalfCheetahBulletEnv-v0',
+         entry_point='pybullet_envs.gym_locomotion_envs:HalfCheetahBulletEnv',
+         max_episode_steps=300)
+
+
 register(id='AntBulletEnv-v0',
          entry_point='pybullet_envs.gym_locomotion_envs:AntBulletEnv',
          max_episode_steps=1000,
