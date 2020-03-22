@@ -6,7 +6,7 @@ from Networks.utils import *
 from Networks.network_modules_numpy import NetworkModule
 
 
-def compute_returns(seed, environment, network, num_eps_samples, num_env_rollouts=1):
+def compute_returns(seed, environment, network, num_eps_samples, num_env_rollouts=5):
     """
 
     :param seed:
@@ -157,7 +157,7 @@ class CDPNet(ESNetwork):
         self.ff_connectivity_type = "linear" #"eligibility"  # connectivity type -- eligibility
 
         recur_ff1_meta = {
-            "clip":1, "activation": identity, "input_size": input_size, "output_size": 64}
+            "clip":1, "activation": identity, "input_size": input_size, "output_size": 48}
         self.recur_plastic_ff1 = \
             NetworkModule(self.ff_connectivity_type, recur_ff1_meta)
         self.params.append(self.recur_plastic_ff1)
@@ -167,7 +167,7 @@ class CDPNet(ESNetwork):
         #    NetworkModule(self.ff_connectivity_type, recur_ff2_meta)
         #self.params.append(self.recur_plastic_ff2)
         recur_ff3_meta = {
-            "clip":1, "activation": identity, "input_size": 64, "output_size": output_size}
+            "clip":1, "activation": identity, "input_size": 48, "output_size": output_size}
         self.recur_plastic_ff3 = \
             NetworkModule(self.ff_connectivity_type, recur_ff3_meta)
         self.params.append(self.recur_plastic_ff3)
@@ -226,8 +226,8 @@ class CDPNet(ESNetwork):
 
 
 class EvolutionaryOptimizer:
-    def __init__(self, network, num_workers=2, epsilon_samples=48,
-            environment_id="Pendulum-v0", learning_rate=0.001, weight_decay=0.01):
+    def __init__(self, network, num_workers=2, epsilon_samples=48, learning_rate_limit=0.001,
+            environment_id="Pendulum-v0", learning_rate=0.01, weight_decay=0.01, max_iterations=2000):
         """
 
         :param network:
@@ -241,7 +241,9 @@ class EvolutionaryOptimizer:
         self.num_workers = num_workers
         self.weight_decay = weight_decay
         self.learning_rate = learning_rate
+        self.max_iterations = max_iterations
         self.epsilon_samples = epsilon_samples
+        self.learning_rate_limit = learning_rate_limit
         self.optimizer = Adam(network.parameters(), learning_rate)
         self.environments = [
             gym.make(environment_id) for _ in range(num_workers)]
@@ -317,6 +319,9 @@ class EvolutionaryOptimizer:
         ratio, theta = self.optimizer.update(-change_mu)
         self.network.update_params(theta, add_eps=False)
 
+        self.learning_rate = (1-(iteration/self.max_iterations))\
+            *self.learning_rate + (iteration/self.max_iterations)*self.learning_rate_limit
+
         avg_return_rec = sum(sample_returns) / len(sample_returns)
         return avg_return_rec, total_timesteps
 
@@ -325,35 +330,40 @@ if __name__ == "__main__":
     t_time = 0.0
     import pybullet_envs
 
-    env_id = "AntBulletEnv-v0"
+    env_id = "CrippledAnt-v0"
     envrn = gym.make(env_id)
+
     envrn.reset()
     envrn.env.ES = True
 
     spinal_net = CDPNet(
         envrn.observation_space.shape[0],
         envrn.action_space.shape[0],
-        action_noise_std=0.001
+        action_noise_std=0.0,
+        num_eps_samples=48*4,
+        noise_std=0.015,
     )
 
     es_optim = EvolutionaryOptimizer(
         spinal_net,
         environment_id=env_id,
+        num_workers=2,
+        epsilon_samples=48*4,
         learning_rate=0.01,
-        epsilon_samples=48,
-        num_workers=2
+        learning_rate_limit=0.001,
+        max_iterations=1000
     )
 
     import pickle
     reward_list = list()
-    for _i in range(2000):
+    for _i in range(es_optim.max_iterations):
         r, t = es_optim.update(_i)
         t_time += t
-        print(r, t_time)
-        reward_list.append((r, t_time))
-        with open("save_ESnetWALK.pkl", "wb") as f:
+        print(r, _i, t/48, t_time)
+        reward_list.append((r, _i, t_time))
+        with open("save_ESnetWALK2.pkl", "wb") as f:
             pickle.dump(spinal_net, f)
-        with open("save_reward.pkl", "wb") as f:
+        with open("save_reward2.pkl", "wb") as f:
             pickle.dump(reward_list, f)
 
 

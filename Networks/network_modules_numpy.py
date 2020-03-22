@@ -12,6 +12,7 @@ class NetworkModule:
             self.layer_weight = np.zeros(
                 (module_metadata["input_size"], module_metadata["output_size"]))
             self.parameters.append((self.layer_weight, "layer_weight"))
+
             self.layer_bias = np.zeros((1, module_metadata["output_size"]))
             self.parameters.append((self.layer_bias, "layer_bias"))
 
@@ -24,14 +25,19 @@ class NetworkModule:
 
             self.eligibility_eta = np.zeros(1)
             self.parameters.append((self.eligibility_eta, "eligibility_eta"))
+
             self.modulation_fan_in_weight = np.zeros((module_metadata["output_size"], 1))
             self.parameters.append((self.modulation_fan_in_weight, "modulation_fan_in_weight"))
+
             self.modulation_fan_in_bias = np.zeros((1, module_metadata["output_size"]))
             self.parameters.append((self.modulation_fan_in_bias, "modulation_fan_in_bias"))
+
             self.modulation_fan_out_weight = np.zeros((1, module_metadata["output_size"]))
             self.parameters.append((self.modulation_fan_out_weight, "modulation_fan_out_weight"))
+
             self.modulation_fan_out_bias = np.zeros((1, 1))
             self.parameters.append((self.modulation_fan_out_bias, "modulation_fan_out_bias"))
+
             self.alpha_plasticity = np.zeros((
                 (module_metadata["input_size"], module_metadata["output_size"])))
             self.parameters.append((self.alpha_plasticity, "alpha_plasticity"))
@@ -39,6 +45,7 @@ class NetworkModule:
             self.layer_weight = np.zeros(
                 (module_metadata["input_size"], module_metadata["output_size"]))
             self.parameters.append((self.layer_weight, "layer_weight"))
+
             self.layer_bias = np.zeros((1, module_metadata["output_size"]))
             self.parameters.append((self.layer_bias, "layer_bias"))
 
@@ -51,14 +58,19 @@ class NetworkModule:
 
             self.eligibility_eta = np.zeros(1)
             self.parameters.append((self.eligibility_eta, "eligibility_eta"))
+
             self.modulation_fan_in_weight = np.zeros((module_metadata["output_size"], 1))
             self.parameters.append((self.modulation_fan_in_weight, "modulation_fan_in_weight"))
+
             self.modulation_fan_in_bias = np.zeros((1, module_metadata["output_size"]))
             self.parameters.append((self.modulation_fan_in_bias, "modulation_fan_in_bias"))
+
             self.modulation_fan_out_weight = np.zeros((1, module_metadata["output_size"]))
             self.parameters.append((self.modulation_fan_out_weight, "modulation_fan_out_weight"))
+
             self.modulation_fan_out_bias = np.zeros((1, 1))
             self.parameters.append((self.modulation_fan_out_bias, "modulation_fan_out_bias"))
+
             self.alpha_plasticity = np.zeros((
                 (module_metadata["input_size"], module_metadata["output_size"])))
             self.parameters.append((self.alpha_plasticity, "alpha_plasticity"))
@@ -66,12 +78,49 @@ class NetworkModule:
             self.layer_weight = np.zeros(
                 (module_metadata["input_size"], module_metadata["output_size"]))
             self.parameters.append((self.layer_weight, "layer_weight"))
+
             self.layer_bias = np.zeros((1, module_metadata["output_size"]))
             self.parameters.append((self.layer_bias, "layer_bias"))
 
             self.recurrent_layer_weight = np.zeros((
                 module_metadata["output_size"], module_metadata["output_size"]))
             self.parameters.append((self.recurrent_layer_weight, "recurrent_layer_weight"))
+
+            self.recurrent_layer_bias = np.zeros((1, module_metadata["output_size"]))
+            self.parameters.append((self.recurrent_layer_bias, "recurrent_layer_bias"))
+
+        elif self.module_type == 'simple_neuromod_recurrent':
+            self.recurrent_trace = np.zeros((1, module_metadata["output_size"]))
+            self.hebbian_trace = np.zeros((
+                (module_metadata["input_size"], module_metadata["output_size"])))
+
+            self.modulation_fan_in_weight = np.zeros((module_metadata["output_size"], 1))
+            self.parameters.append((self.modulation_fan_in_weight, "modulation_fan_in_weight"))
+
+            self.modulation_fan_in_bias = np.zeros((1, module_metadata["output_size"]))
+            self.parameters.append((self.modulation_fan_in_bias, "modulation_fan_in_bias"))
+
+            self.modulation_fan_out_weight = np.zeros((1, module_metadata["output_size"]))
+            self.parameters.append((self.modulation_fan_out_weight, "modulation_fan_out_weight"))
+
+            self.modulation_fan_out_bias = np.zeros((1, 1))
+            self.parameters.append((self.modulation_fan_out_bias, "modulation_fan_out_bias"))
+
+            self.alpha_plasticity = np.zeros((
+                (module_metadata["input_size"], module_metadata["output_size"])))
+            self.parameters.append((self.alpha_plasticity, "alpha_plasticity"))
+
+            self.layer_weight = np.zeros(
+                (module_metadata["input_size"], module_metadata["output_size"]))
+            self.parameters.append((self.layer_weight, "layer_weight"))
+
+            self.layer_bias = np.zeros((1, module_metadata["output_size"]))
+            self.parameters.append((self.layer_bias, "layer_bias"))
+
+            self.recurrent_layer_weight = np.zeros((
+                module_metadata["output_size"], module_metadata["output_size"]))
+            self.parameters.append((self.recurrent_layer_weight, "recurrent_layer_weight"))
+
             self.recurrent_layer_bias = np.zeros((1, module_metadata["output_size"]))
             self.parameters.append((self.recurrent_layer_bias, "recurrent_layer_bias"))
 
@@ -87,6 +136,10 @@ class NetworkModule:
             self.hebbian_trace = self.hebbian_trace * 0
             self.recurrent_trace = self.recurrent_trace * 0
             self.eligibility_trace = self.hebbian_trace * 0
+
+        elif self.module_type == 'simple_neuromod_recurrent':
+            self.hebbian_trace = self.hebbian_trace * 0
+            self.recurrent_trace = self.recurrent_trace * 0
 
     def update_trace(self, pre_synaptic, post_synaptic):
         if self.module_type == "eligibility":
@@ -111,6 +164,16 @@ class NetworkModule:
             self.eligibility_trace = (np.ones(1) - self.eligibility_eta) * \
                 self.eligibility_trace + self.eligibility_eta * (np.matmul(pre_synaptic.transpose(), post_synaptic))
 
+        elif self.module_type == 'simple_neuromod_recurrent':
+            modulatory_signal = self.modulation_fan_out_bias + \
+                np.matmul(self.modulation_fan_out_weight, np.tanh(
+                    np.matmul(self.modulation_fan_in_weight, post_synaptic) + self.modulation_fan_in_bias))
+
+            self.hebbian_trace = np.clip(
+                self.hebbian_trace + modulatory_signal * (np.matmul(pre_synaptic.transpose(), post_synaptic)),
+                a_max=self.module_metadata["clip"], a_min=self.module_metadata["clip"] * -1)
+
+
     def forward(self, x):
         post_synaptic = None
         pre_synaptic = x.copy()
@@ -130,6 +193,16 @@ class NetworkModule:
             fixed_rec_weights = \
                 np.matmul(self.recurrent_trace, self.recurrent_layer_weight) + self.recurrent_layer_bias
             post_synaptic = self.activation(fixed_ff_weights + plastic_ff_weights + fixed_rec_weights)
+            self.recurrent_trace = post_synaptic
+            self.update_trace(pre_synaptic=pre_synaptic, post_synaptic=post_synaptic)
+
+        elif self.module_type == 'simple_neuromod_recurrent':
+            fixed_ff_weights = np.matmul(x, self.layer_weight) + self.layer_bias
+            plastic_ff_weights = np.matmul(x, (self.alpha_plasticity * self.hebbian_trace))
+            fixed_rec_weights = \
+                np.matmul(self.recurrent_trace, self.recurrent_layer_weight) + self.recurrent_layer_bias
+            post_synaptic = self.activation(fixed_ff_weights + plastic_ff_weights + fixed_rec_weights)
+            self.recurrent_trace = post_synaptic
             self.update_trace(pre_synaptic=pre_synaptic, post_synaptic=post_synaptic)
 
         return post_synaptic
