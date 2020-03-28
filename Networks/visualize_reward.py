@@ -9,7 +9,10 @@ with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/gated/sv_dat
 with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/gated/sv_data/save_rewardgated2.pkl", "rb") as f:
     data2 = pickle.load(f)
 
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 x = [_[1] for _ in data]
 y = [_[0] for _ in data]
@@ -24,13 +27,13 @@ m_len = min(min(len(x), len(x1)), len(x2))
 x_avg = [[y[_], y1[_], y2[_]] for _ in range(m_len)]
 x_avg = [sum(l)/len(l) for l in x_avg]
 
-plt.plot(list(range(m_len)), x_avg)
+plt.plot(list(range(m_len)), x_avg, label="Neuromodulated Gated")
 
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/sv_data/save_reward2.pkl", "rb") as f:
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/save_reward2.pkl", "rb") as f:
     d1 = pickle.load(f)
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/sv_data/save_reward21.pkl", "rb") as f:
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/save_reward21.pkl", "rb") as f:
     d12 = pickle.load(f)
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/sv_data/save_reward22.pkl", "rb") as f:
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/save_reward22.pkl", "rb") as f:
     d13 = pickle.load(f)
 
 xd1 = [_[1] for _ in d1]
@@ -49,8 +52,37 @@ x_avg = [[yd1[_], yd12[_], yd13[_]] for _ in range(m_len)]
 x_avg = [sum(l)/len(l) for l in x_avg]
 
 
-plt.plot(list(range(m_len)), x_avg)
+plt.plot(list(range(m_len)), x_avg, label="Feedforward")
 #plt.plot(x2, y2)
+
+
+
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/hebb/save_rewardhebb2.pkl", "rb") as f:
+    d1 = pickle.load(f)
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/hebb/save_rewardhebb21.pkl", "rb") as f:
+    d12 = pickle.load(f)
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/hebb/save_rewardhebb22.pkl", "rb") as f:
+    d13 = pickle.load(f)
+
+xd11 = [_[1] for _ in d1]
+yd11 = [_[0] for _ in d1]
+
+xd112 = [_[1] for _ in d12]
+yd112 = [_[0] for _ in d12]
+
+xd113 = [_[1] for _ in d13]
+yd113 = [_[0] for _ in d13]
+
+# todo: next do one with the dropout
+
+m_len = min(min(len(xd11), len(xd112)), len(xd113))
+x_avg = [[yd11[_], yd112[_], yd113[_]] for _ in range(m_len)]
+x_avg = [sum(l)/len(l) for l in x_avg]
+plt.plot(xd112, yd112, label="Hebbian")
+
+
+
+# box plot
 
 plt.show()
 

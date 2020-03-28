@@ -154,7 +154,6 @@ class CDPNet(ESNetwork):
         self.input_size = input_size  # observation space dimensionality
         self.output_size = output_size  # action space dimensionality
         self.action_noise_std = action_noise_std  # action noise standard deviation
-        self.ff_connectivity_type = "eligibility_recurrent"  # connectivity type -- eligibility
 
         recur_ff1_meta = {
             "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
@@ -340,7 +339,7 @@ if __name__ == "__main__":
         envrn.observation_space.shape[0],
         envrn.action_space.shape[0],
         action_noise_std=0.0,
-        num_eps_samples=48*6,
+        num_eps_samples=48*5,
         noise_std=0.02,
     )
 
@@ -348,7 +347,7 @@ if __name__ == "__main__":
         spinal_net,
         environment_id=env_id,
         num_workers=2,
-        epsilon_samples=48*6,
+        epsilon_samples=48*5,
         learning_rate=0.01,
         learning_rate_limit=0.001,
         max_iterations=1000

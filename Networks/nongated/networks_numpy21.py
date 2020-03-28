@@ -347,7 +347,7 @@ if __name__ == "__main__":
     es_optim = EvolutionaryOptimizer(
         spinal_net,
         environment_id=env_id,
-        num_workers=1,
+        num_workers=2,
         epsilon_samples=48*4,
         learning_rate=0.01,
         learning_rate_limit=0.001,

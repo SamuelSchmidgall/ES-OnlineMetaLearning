@@ -1,8 +1,8 @@
 import gym
 import numpy as np
 from copy import deepcopy
-from Networks.utils import *
 from multiprocessing import Pool
+from Networks.utils import *
 from Networks.network_modules_numpy import NetworkModule
 
 
@@ -200,7 +200,7 @@ class CDPNet(ESNetwork):
         :param x: (ndarray) state input
         :return: (ndarray) post synaptic activity at final layer
         """
-        pre_synaptic_gate1 = x
+        gated_activity1 = np.where(np.random.uniform(0, 1, size=(48,)) >= 0.2, 1.0, 0.0)
         #gated_activity1 = np.where(1/(1 + np.exp(
         #    -self.gate_ff1.forward(pre_synaptic_gate1))) >= 0.5, 1.0, 0.0)
 
@@ -209,7 +209,7 @@ class CDPNet(ESNetwork):
 
         pre_synaptic_ff1 = x
         post_synaptic_ff1 = np.tanh(
-            self.recur_plastic_ff1.forward(pre_synaptic_ff1)) #* gated_activity1
+            self.recur_plastic_ff1.forward(pre_synaptic_ff1)) * gated_activity1
 
         #pre_synaptic_ff2 = post_synaptic_ff1
         #post_synaptic_ff2 = np.tanh(
@@ -346,8 +346,8 @@ if __name__ == "__main__":
 
     es_optim = EvolutionaryOptimizer(
         spinal_net,
-        num_workers=2,
         environment_id=env_id,
+        num_workers=2,
         epsilon_samples=48*4,
         learning_rate=0.01,
         learning_rate_limit=0.001,
@@ -363,7 +363,7 @@ if __name__ == "__main__":
         reward_list.append((r, _i, t_time))
         with open("save_ESnetWALK2.pkl", "wb") as f:
             pickle.dump(spinal_net, f)
-        with open("save_reward21.pkl", "wb") as f:
+        with open("save_reward22.pkl", "wb") as f:
             pickle.dump(reward_list, f)
 
 

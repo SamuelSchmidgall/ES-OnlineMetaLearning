@@ -340,7 +340,7 @@ if __name__ == "__main__":
         envrn.observation_space.shape[0],
         envrn.action_space.shape[0],
         action_noise_std=0.0,
-        num_eps_samples=48*5,
+        num_eps_samples=48*6,
         noise_std=0.015,
     )
 
@@ -348,7 +348,7 @@ if __name__ == "__main__":
         spinal_net,
         environment_id=env_id,
         num_workers=2,
-        epsilon_samples=48*5,
+        epsilon_samples=48*6,
         learning_rate=0.01,
         learning_rate_limit=0.001,
         max_iterations=1000

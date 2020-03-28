@@ -154,7 +154,6 @@ class CDPNet(ESNetwork):
         self.input_size = input_size  # observation space dimensionality
         self.output_size = output_size  # action space dimensionality
         self.action_noise_std = action_noise_std  # action noise standard deviation
-        self.ff_connectivity_type = "eligibility_recurrent"  # connectivity type -- eligibility
 
         recur_ff1_meta = {
             "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
@@ -200,16 +199,12 @@ class CDPNet(ESNetwork):
         :param x: (ndarray) state input
         :return: (ndarray) post synaptic activity at final layer
         """
-        pre_synaptic_gate1 = x
-        gated_activity1 = np.where(1/(1 + np.exp(
-            -self.gate_ff1.forward(pre_synaptic_gate1))) >= 0.5, 1.0, 0.0)
-
         #gated_activity2 = np.where(1/(1 + np.exp(
         #    -self.gate_ff2.forward(gated_activity1))) >= 0.5, 1.0, 0.0)
 
         pre_synaptic_ff1 = x
         post_synaptic_ff1 = np.tanh(
-            self.recur_plastic_ff1.forward(pre_synaptic_ff1)) * gated_activity1
+            self.recur_plastic_ff1.forward(pre_synaptic_ff1))
 
         #pre_synaptic_ff2 = post_synaptic_ff1
         #post_synaptic_ff2 = np.tanh(
@@ -340,7 +335,7 @@ if __name__ == "__main__":
         envrn.observation_space.shape[0],
         envrn.action_space.shape[0],
         action_noise_std=0.0,
-        num_eps_samples=48*6,
+        num_eps_samples=48*5,
         noise_std=0.02,
     )
 
@@ -348,7 +343,7 @@ if __name__ == "__main__":
         spinal_net,
         environment_id=env_id,
         num_workers=2,
-        epsilon_samples=48*6,
+        epsilon_samples=48*5,
         learning_rate=0.01,
         learning_rate_limit=0.001,
         max_iterations=1000

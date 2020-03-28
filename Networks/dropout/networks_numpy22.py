@@ -200,7 +200,7 @@ class CDPNet(ESNetwork):
         :param x: (ndarray) state input
         :return: (ndarray) post synaptic activity at final layer
         """
-        pre_synaptic_gate1 = x
+        gated_activity1 = np.where(np.random.uniform(0, 1, size=(48,)) >= 0.2, 1.0, 0.0)
         #gated_activity1 = np.where(1/(1 + np.exp(
         #    -self.gate_ff1.forward(pre_synaptic_gate1))) >= 0.5, 1.0, 0.0)
 
@@ -209,7 +209,7 @@ class CDPNet(ESNetwork):
 
         pre_synaptic_ff1 = x
         post_synaptic_ff1 = np.tanh(
-            self.recur_plastic_ff1.forward(pre_synaptic_ff1)) #* gated_activity1
+            self.recur_plastic_ff1.forward(pre_synaptic_ff1)) * gated_activity1
 
         #pre_synaptic_ff2 = post_synaptic_ff1
         #post_synaptic_ff2 = np.tanh(
