@@ -34,11 +34,12 @@ def compute_returns(seed, environment, network, num_eps_samples, num_env_rollout
         for _roll in range(num_env_rollouts):
             network.reset()
             state = local_env.reset()
+            gate = local_env.gate
             # run the simulation until it terminates or max env interation terminates it
             for _inter in range(max_env_interacts):
                 # forward propagate using noisy weights and plasticity values, also update trace
                 state = state.reshape((1, state.size))
-                action = network.forward(state)[0]
+                action = network.forward(state, gate)[0]
                 action = np.clip(action, a_min=-1, a_max=1)
                 # interact with environment
                 state, reward, game_over, _ = local_env.step(action)
@@ -155,7 +156,6 @@ class CDPNet(ESNetwork):
         self.output_size = output_size  # action space dimensionality
         self.action_noise_std = action_noise_std  # action noise standard deviation
         self.ff_connectivity_type = "linear" #"eligibility"  # connectivity type -- eligibility
-        self.dropout_p = 0.2
 
         recur_ff1_meta = {
             "clip":1, "activation": identity, "input_size": input_size, "output_size": 48}
@@ -195,13 +195,13 @@ class CDPNet(ESNetwork):
         for _param in self.params:
             _param.reset()
 
-    def forward(self, x):
+    def forward(self, x, gate=None):
         """
         Forward propagate input value
         :param x: (ndarray) state input
         :return: (ndarray) post synaptic activity at final layer
         """
-        gated_activity1 = np.where(np.random.uniform(0, 1, size=(48,)) >= self.dropout_p, 1.0, 0.0)
+        gated_activity1 = gate
         #gated_activity1 = np.where(1/(1 + np.exp(
         #    -self.gate_ff1.forward(pre_synaptic_gate1))) >= 0.5, 1.0, 0.0)
 

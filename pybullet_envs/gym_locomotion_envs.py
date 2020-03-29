@@ -167,6 +167,7 @@ class CrippledHalfCheetahBulletEnv(WalkerBaseBulletEnv):
 
     cripple_prob = [0.5, 1/12, 1/12, 1/12, 1/12, 1/12, 1/12]  # None .40, 0-4 0.15 each
     self.crippled_joint = np.random.choice([None, 0, 1, 2, 3, 4, 5], p=cripple_prob)
+    self.gates = [np.where(np.random.uniform(0, 1, size=(48,)) >= 0.2, 1.0, 0.0) for _ in range(7)]
 
   def reset(self):
     if (self.stateId >= 0):
@@ -185,6 +186,7 @@ class CrippledHalfCheetahBulletEnv(WalkerBaseBulletEnv):
 
     cripple_prob = [0.5, 1/12, 1/12, 1/12, 1/12, 1/12, 1/12]  # None .40, 0-4 0.15 each
     self.crippled_joint = np.random.choice([None, 0, 1, 2, 3, 4, 5], p=cripple_prob)
+    self.gate = self.gates[self.crippled_joint+1 if self.crippled_joint is not None else 0]
 
     return r
 
@@ -194,12 +196,12 @@ class CrippledHalfCheetahBulletEnv(WalkerBaseBulletEnv):
   electricity_cost = -2.0
   stall_torque_cost = -0.1
   foot_collision_cost = -1.0
-  foot_ground_object_names = set(["floor"])
   joints_at_limit_cost = -0.1
+  foot_ground_object_names = set(["floor"])
 
   def step(self, a):
-    if self.crippled_leg is not None:
-      a[self.crippled_leg] = 0
+    if self.crippled_joint is not None:
+      a[self.crippled_joint] = 0
 
     self.robot.apply_action(a)
     self.scene.global_step()
@@ -240,6 +242,92 @@ class CrippledHalfCheetahBulletEnv(WalkerBaseBulletEnv):
     self.HUD(state, a, done)
     self.reward += sum(self.rewards)
     return state, sum(self.rewards), bool(done), {}
+
+
+
+class CrippledHopperBulletEnv(WalkerBaseBulletEnv):
+  def __init__(self, render=False):
+    self.robot = Hopper()
+    WalkerBaseBulletEnv.__init__(self, self.robot, render)
+
+    cripple_prob = [0.5, 1/6, 1/6, 1/6]  # None .40, 0-4 0.15 each
+    self.crippled_joint = np.random.choice([None, 0, 1, 2], p=cripple_prob)
+    self.gates = [np.where(np.random.uniform(0, 1, size=(48,)) >= 0.2, 1.0, 0.0) for _ in range(4)]
+
+  def reset(self):
+    if (self.stateId >= 0):
+      self._p.restoreState(self.stateId)
+
+    r = MJCFBaseBulletEnv.reset(self)
+    self._p.configureDebugVisualizer(pybullet.COV_ENABLE_RENDERING, 0)
+
+    self.parts, self.jdict, self.ordered_joints, self.robot_body = self.robot.addToScene(
+        self._p, self.stadium_scene.ground_plane_mjcf)
+    self.ground_ids = set([(self.parts[f].bodies[self.parts[f].bodyIndex],
+                            self.parts[f].bodyPartIndex) for f in self.foot_ground_object_names])
+    self._p.configureDebugVisualizer(pybullet.COV_ENABLE_RENDERING, 1)
+    if (self.stateId < 0):
+      self.stateId = self._p.saveState()
+
+    cripple_prob = [0.5, 1/6, 1/6, 1/6]  # None .40, 0-4 0.15 each
+    self.crippled_joint = np.random.choice([None, 0, 1, 2], p=cripple_prob)
+    self.gate = self.gates[self.crippled_joint+1 if self.crippled_joint is not None else 0]
+
+    return r
+
+  def _isDone(self):
+    return self._alive < 0
+
+  electricity_cost = -2.0
+  stall_torque_cost = -0.1
+  foot_collision_cost = -1.0
+  joints_at_limit_cost = -0.1
+  foot_ground_object_names = set(["floor"])
+
+  def step(self, a):
+    if self.crippled_joint is not None:
+      a[self.crippled_joint] = 0
+
+    self.robot.apply_action(a)
+    self.scene.global_step()
+
+    state = self.robot.calc_state()
+
+    self._alive = float(
+        self.robot.alive_bonus(
+            state[0] + self.robot.initial_z,
+            self.robot.body_rpy[1]))
+    done = self._isDone()
+    if not np.isfinite(state).all():
+      print("~INF~", state)
+      done = True
+
+    potential_old = self.potential
+    self.potential = self.robot.calc_potential()
+    progress = float(self.potential - potential_old)
+
+    feet_collision_cost = 0.0
+    for i, f in enumerate(self.robot.feet):
+      contact_ids = set((x[2], x[4]) for x in f.contact_list())
+      if (self.ground_ids & contact_ids):
+        self.robot.feet_contact[i] = 1.0
+      else:
+        self.robot.feet_contact[i] = 0.0
+
+    electricity_cost = self.electricity_cost * \
+        float(np.abs(a * self.robot.joint_speeds).mean())
+    electricity_cost += self.stall_torque_cost * \
+        float(np.square(a).mean())
+
+    joints_at_limit_cost_T = float(self.joints_at_limit_cost * self.robot.joints_at_limit)
+    joints_at_limit_cost = float(-0.1 * self.robot.joints_at_limit)
+
+    self.rewards = [joints_at_limit_cost, progress]
+
+    self.HUD(state, a, done)
+    self.reward += sum(self.rewards)
+    return state, sum(self.rewards), bool(done), {}
+
 
 
 

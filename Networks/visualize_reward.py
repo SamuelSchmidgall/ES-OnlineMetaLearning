@@ -57,11 +57,11 @@ plt.plot(list(range(m_len)), x_avg, label="Feedforward")
 
 
 
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/hebb/save_rewardhebb2.pkl", "rb") as f:
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/dropout/save_reward2.pkl", "rb") as f:
     d1 = pickle.load(f)
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/hebb/save_rewardhebb21.pkl", "rb") as f:
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/dropout/save_reward21.pkl", "rb") as f:
     d12 = pickle.load(f)
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/hebb/save_rewardhebb22.pkl", "rb") as f:
+with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/dropout/save_reward22.pkl", "rb") as f:
     d13 = pickle.load(f)
 
 xd11 = [_[1] for _ in d1]

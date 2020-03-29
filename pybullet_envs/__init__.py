@@ -195,6 +195,9 @@ register(id='CrippledHalfCheetahBulletEnv-v0',
          entry_point='pybullet_envs.gym_locomotion_envs:CrippledHalfCheetahBulletEnv',
          max_episode_steps=300)
 
+register(id='CrippledHopperBulletEnv-v0',
+         entry_point='pybullet_envs.gym_locomotion_envs:CrippledHopperBulletEnv',
+         max_episode_steps=300)
 
 register(id='AntBulletEnv-v0',
          entry_point='pybullet_envs.gym_locomotion_envs:AntBulletEnv',
