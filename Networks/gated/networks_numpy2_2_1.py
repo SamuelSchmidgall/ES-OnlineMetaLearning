@@ -154,11 +154,12 @@ class CDPNet(ESNetwork):
         self.input_size = input_size  # observation space dimensionality
         self.output_size = output_size  # action space dimensionality
         self.action_noise_std = action_noise_std  # action noise standard deviation
+        self.ff_connectivity_type = "linear"  # connectivity type -- eligibility
 
         recur_ff1_meta = {
             "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
         self.recur_plastic_ff1 = \
-            NetworkModule("linear", recur_ff1_meta)
+            NetworkModule(self.ff_connectivity_type, recur_ff1_meta)
         self.params.append(self.recur_plastic_ff1)
         #recur_ff2_meta = {
         #    "clip":1, "activation": identity, "input_size": 64, "output_size": 32}
@@ -329,7 +330,7 @@ if __name__ == "__main__":
     t_time = 0.0
     import pybullet_envs
 
-    env_id = "CrippledAnt-v0"
+    env_id = "CrippledAnt2-v0"
     envrn = gym.make(env_id)
 
     envrn.reset()
@@ -339,7 +340,7 @@ if __name__ == "__main__":
         envrn.observation_space.shape[0],
         envrn.action_space.shape[0],
         action_noise_std=0.0,
-        num_eps_samples=48*5,
+        num_eps_samples=48*6,
         noise_std=0.02,
     )
 
@@ -347,7 +348,7 @@ if __name__ == "__main__":
         spinal_net,
         environment_id=env_id,
         num_workers=2,
-        epsilon_samples=48*5,
+        epsilon_samples=48*6,
         learning_rate=0.01,
         learning_rate_limit=0.001,
         max_iterations=1000
@@ -360,9 +361,9 @@ if __name__ == "__main__":
         t_time += t
         print(r, _i, t/48, t_time)
         reward_list.append((r, _i, t_time))
-        with open("save_ESnetWALKgated1.pkl", "wb") as f:
+        with open("save_ESnetWALKgatedant2.pkl", "wb") as f:
             pickle.dump(spinal_net, f)
-        with open("save_rewardgated1.pkl", "wb") as f:
+        with open("save_rewardgatedant2.pkl", "wb") as f:
             pickle.dump(reward_list, f)
 
 

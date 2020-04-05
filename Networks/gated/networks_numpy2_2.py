@@ -154,7 +154,7 @@ class CDPNet(ESNetwork):
         self.input_size = input_size  # observation space dimensionality
         self.output_size = output_size  # action space dimensionality
         self.action_noise_std = action_noise_std  # action noise standard deviation
-        self.ff_connectivity_type = "eligibility_recurrent"  # connectivity type -- eligibility
+        self.ff_connectivity_type = "linear"  # connectivity type -- eligibility
 
         recur_ff1_meta = {
             "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
@@ -330,7 +330,7 @@ if __name__ == "__main__":
     t_time = 0.0
     import pybullet_envs
 
-    env_id = "CrippledAnt-v0"
+    env_id = "CrippledAnt2-v0"
     envrn = gym.make(env_id)
 
     envrn.reset()
@@ -361,9 +361,9 @@ if __name__ == "__main__":
         t_time += t
         print(r, _i, t/48, t_time)
         reward_list.append((r, _i, t_time))
-        with open("save_ESnetWALKgated2.pkl", "wb") as f:
+        with open("save_ESnetWALKgatedant1.pkl", "wb") as f:
             pickle.dump(spinal_net, f)
-        with open("save_rewardgated2.pkl", "wb") as f:
+        with open("save_rewardgatedant1.pkl", "wb") as f:
             pickle.dump(reward_list, f)
 
 
