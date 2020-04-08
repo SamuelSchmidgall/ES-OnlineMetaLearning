@@ -3,7 +3,7 @@ import pybullet_envs
 from Networks.networks_numpy2 import *
 
 
-env_id = "CrippledHopperBulletEnv-v0"
+env_id = "CrippledAnt-v0"
 envrn = gym.make(env_id)
 
 import pickle

@@ -330,7 +330,7 @@ if __name__ == "__main__":
     t_time = 0.0
     import pybullet_envs
 
-    env_id = "CrippledAnt-v0"
+    env_id = "CrippledHopper-v0"
     envrn = gym.make(env_id)
 
     envrn.reset()
@@ -340,7 +340,7 @@ if __name__ == "__main__":
         envrn.observation_space.shape[0],
         envrn.action_space.shape[0],
         action_noise_std=0.0,
-        num_eps_samples=48*4,
+        num_eps_samples=48,
         noise_std=0.015,
     )
 
@@ -348,7 +348,7 @@ if __name__ == "__main__":
         spinal_net,
         environment_id=env_id,
         num_workers=2,
-        epsilon_samples=48*4,
+        epsilon_samples=48,
         learning_rate=0.01,
         learning_rate_limit=0.001,
         max_iterations=1000
@@ -361,9 +361,9 @@ if __name__ == "__main__":
         t_time += t
         print(r, _i, t/48, t_time)
         reward_list.append((r, _i, t_time))
-        with open("save_ESnetWALK2.pkl", "wb") as f:
+        with open("../data/hopper/nongated/save_ESnetWALK2.pkl", "wb") as f:
             pickle.dump(spinal_net, f)
-        with open("save_reward2.pkl", "wb") as f:
+        with open("../data/hopper/nongated/save_reward2.pkl", "wb") as f:
             pickle.dump(reward_list, f)
 
 

@@ -29,11 +29,11 @@ x_avg = [sum(l)/len(l) for l in x_avg]
 
 plt.plot(list(range(m_len)), x_avg, label="Neuromodulated Gated")
 
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/save_reward2.pkl", "rb") as f:
+with open("/Networks/data/hopper/nongated/save_reward2.pkl", "rb") as f:
     d1 = pickle.load(f)
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/save_reward21.pkl", "rb") as f:
+with open("/Networks/data/hopper/nongated/save_reward21.pkl", "rb") as f:
     d12 = pickle.load(f)
-with open("/home/sam/PycharmProjects/ES-OnlineMetaLearning/Networks/nongated/save_reward22.pkl", "rb") as f:
+with open("/Networks/data/hopper/nongated/save_reward22.pkl", "rb") as f:
     d13 = pickle.load(f)
 
 xd1 = [_[1] for _ in d1]

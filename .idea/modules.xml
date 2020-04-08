@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ES-OnlineMetaLearning.iml" filepath="$PROJECT_DIR$/.idea/ES-OnlineMetaLearning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RodentNavigation/.idea/RatNavigation.iml" filepath="$PROJECT_DIR$/../RodentNavigation/.idea/RatNavigation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gym/.idea/gym.iml" filepath="$PROJECT_DIR$/../gym/.idea/gym.iml" />
     </modules>
   </component>
 </project>
