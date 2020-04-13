@@ -2,43 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ea8e2f3-879f-4cf6-9232-63ae44ae55f0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_ESnetWALK2.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward2.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward21.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Networks/data/tmp_single_legant/save_ESnetWALKgatedant1.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Networks/data/tmp_single_legant/save_ESnetWALKgatedant2.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Networks/data/tmp_single_legant/save_ESnetWALKgatedant3.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ES-OnlineMetaLearning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ES-OnlineMetaLearning.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/dropout/save_ESnetWALK2.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/dropout/save_reward2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/single_leg/xdg/save_reward2.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/dropout/save_reward21.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/single_leg/xdg/save_reward21.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/dropout/save_reward22.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/single_leg/xdg/save_reward22.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_ESnetWALKgatedant1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_ESnetWALKgatedant2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_ESnetWALKgatedant3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_rewardgatedant1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_rewardgatedant2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_rewardgatedant3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_ESnetWALK2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_ESnetWALK2.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward2.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward21.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward21.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward22.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward22.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/save_ESnetWALKgatedant1.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/save_ESnetWALKgatedant2.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/save_ESnetWALKgatedant3.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/save_rewardgatedant1.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/save_rewardgatedant2.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/save_rewardgatedant3.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/sv_data/save_rewardgated0.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/sv_data/save_rewardgated1.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/sv_data/save_rewardgated2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/network_modules_numpy.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/network_modules_numpy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/networks_numpy.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/networks_numpy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/networks_numpy2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/networks_numpy2_1.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Networks/nongated/networks_numpy2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/nongated/networks_numpy2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Networks/nongated/networks_numpy21.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/nongated/networks_numpy21.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Networks/nongated/networks_numpy22.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/nongated/networks_numpy22.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/nongated/save_ESnetWALK2.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/nongated/save_reward2.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/nongated/save_reward21.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/nongated/save_reward22.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward22.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Networks/quadruped_visualize.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/quadruped_visualize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/visualize_reward.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/visualize_reward.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RodentNavigation/.idea/RatNavigation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../RodentNavigation/.idea/RatNavigation.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,8 +59,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Networks" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Networks/data/hopper/gated_plastic" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyDependenciesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -61,15 +68,15 @@
       <recent name="$PROJECT_DIR$/Networks/data/hopper/gated" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Networks/data/hopper/gated_plastic" />
       <recent name="$PROJECT_DIR$/Networks" />
+      <recent name="$PROJECT_DIR$/Networks/data/tmp_single_legant" />
+      <recent name="$PROJECT_DIR$/Networks/gated_plastic" />
       <recent name="$PROJECT_DIR$/../gym/gym/envs/mujoco" />
-      <recent name="$PROJECT_DIR$/Networks/data/single_leg/xdg" />
-      <recent name="$PROJECT_DIR$/Networks/data/single_leg/gated" />
-      <recent name="$PROJECT_DIR$/Networks/data/single_leg/nongated" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.quadruped_visualize">
-    <configuration name="networks_numpy2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.activity_analysis">
+    <configuration name="activity_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ES-OnlineMetaLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -77,11 +84,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/nongated" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/nongated/networks_numpy2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/activity_analysis.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -90,7 +97,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="networks_numpy22" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="networks_numpy2_0" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ES-OnlineMetaLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,11 +105,32 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/nongated" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/gated_plastic" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/nongated/networks_numpy22.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_0.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="networks_numpy2_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ES-OnlineMetaLearning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/gated_plastic" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -119,11 +147,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/gated" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/gated_plastic" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/gated/networks_numpy2_2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -132,40 +160,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="networks_numpy2_2_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ES-OnlineMetaLearning" />
+    <configuration name="spiking_es" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="spiking" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/gated" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../spiking" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="quadruped_visualize" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ES-OnlineMetaLearning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/quadruped_visualize.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../spiking/spiking_es.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -176,11 +183,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.quadruped_visualize" />
-        <item itemvalue="Python.networks_numpy2_2_1" />
-        <item itemvalue="Python.networks_numpy2" />
-        <item itemvalue="Python.networks_numpy22" />
+        <item itemvalue="Python.activity_analysis" />
         <item itemvalue="Python.networks_numpy2_2" />
+        <item itemvalue="Python.networks_numpy2_1" />
+        <item itemvalue="Python.networks_numpy2_0" />
+        <item itemvalue="Python.spiking_es" />
       </list>
     </recent_temporary>
   </component>
@@ -198,66 +205,84 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="588" y="370" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586368614811">
+    <state x="588" y="370" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586791385283">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="588" y="370" key="#com.intellij.fileTypes.FileTypeChooser/65.24.1855.1056@65.24.1855.1056" timestamp="1586368614811" />
-    <state x="730" y="302" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586293914235">
+    <state x="588" y="370" key="#com.intellij.fileTypes.FileTypeChooser/65.24.1855.1056@65.24.1855.1056" timestamp="1586791385283" />
+    <state x="730" y="302" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586626999693">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="730" y="302" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586293914235" />
+    <state x="730" y="302" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586626999693" />
     <state x="780" y="311" key="FileChooserDialogImpl" timestamp="1586296001753">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="780" y="311" key="FileChooserDialogImpl/65.24.1855.1056@65.24.1855.1056" timestamp="1586296001753" />
-    <state width="1574" height="262" key="GridCell.Tab.0.bottom" timestamp="1586380700908">
+    <state width="1832" height="284" key="GridCell.Tab.0.bottom" timestamp="1586806407521">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1574" height="262" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1586380700908" />
-    <state width="1574" height="262" key="GridCell.Tab.0.center" timestamp="1586380700906">
+    <state width="1832" height="284" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1586806407520" />
+    <state width="1832" height="284" key="GridCell.Tab.0.center" timestamp="1586806407519">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1574" height="262" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1586380700906" />
-    <state width="1574" height="262" key="GridCell.Tab.0.left" timestamp="1586380700905">
+    <state width="1832" height="284" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1586806407519" />
+    <state width="1832" height="284" key="GridCell.Tab.0.left" timestamp="1586806407519">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1574" height="262" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1586380700905" />
-    <state width="1574" height="262" key="GridCell.Tab.0.right" timestamp="1586380700907">
+    <state width="1832" height="284" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1586806407519" />
+    <state width="1832" height="284" key="GridCell.Tab.0.right" timestamp="1586806407520">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1574" height="262" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1586380700907" />
-    <state width="1574" height="324" key="GridCell.Tab.1.bottom" timestamp="1586294456790">
+    <state width="1832" height="284" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1586806407520" />
+    <state width="1832" height="365" key="GridCell.Tab.1.bottom" timestamp="1586734779272">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1574" height="324" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1586294456790" />
-    <state width="1574" height="324" key="GridCell.Tab.1.center" timestamp="1586294456768">
+    <state width="1832" height="365" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1586734779272" />
+    <state width="1832" height="365" key="GridCell.Tab.1.center" timestamp="1586734779271">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1574" height="324" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1586294456768" />
-    <state width="1574" height="324" key="GridCell.Tab.1.left" timestamp="1586294456765">
+    <state width="1832" height="365" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1586734779271" />
+    <state width="1832" height="365" key="GridCell.Tab.1.left" timestamp="1586734779266">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1574" height="324" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1586294456765" />
-    <state width="1574" height="324" key="GridCell.Tab.1.right" timestamp="1586294456787">
+    <state width="1832" height="365" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1586734779266" />
+    <state width="1832" height="365" key="GridCell.Tab.1.right" timestamp="1586734779271">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1574" height="324" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1586294456787" />
-    <state x="486" y="188" key="SettingsEditor" timestamp="1586300709427">
+    <state width="1832" height="365" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1586734779271" />
+    <state x="486" y="188" key="SettingsEditor" timestamp="1586652594558">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="486" y="188" key="SettingsEditor/65.24.1855.1056@65.24.1855.1056" timestamp="1586300709427" />
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586307754850">
+    <state x="486" y="188" key="SettingsEditor/65.24.1855.1056@65.24.1855.1056" timestamp="1586652594558" />
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586714757014">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586307754850" />
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586714757014" />
+    <state x="647" y="157" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1586652344290">
+      <screen x="65" y="24" width="1855" height="1056" />
+    </state>
+    <state x="647" y="157" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/65.24.1855.1056@65.24.1855.1056" timestamp="1586652344290" />
+    <state x="655" y="236" width="672" height="678" key="search.everywhere.popup" timestamp="1586626926470">
+      <screen x="65" y="24" width="1855" height="1056" />
+    </state>
+    <state x="655" y="236" width="672" height="678" key="search.everywhere.popup/65.24.1855.1056@65.24.1855.1056" timestamp="1586626926470" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Networks/gated/networks_numpy2_2.py</url>
-          <line>333</line>
+          <line>324</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../spiking/spiking_es.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../bindsnet/bindsnet/pipeline/action.py</url>
+          <line>109</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

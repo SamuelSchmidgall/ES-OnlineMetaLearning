@@ -1,21 +1,12 @@
 import gym
 import numpy as np
 from copy import deepcopy
-from multiprocessing import Pool
 from Networks.utils import *
+from multiprocessing import Pool
 from Networks.network_modules_numpy import NetworkModule
 
 
 def compute_returns(seed, environment, network, num_eps_samples, num_env_rollouts=5):
-    """
-
-    :param seed:
-    :param environment:
-    :param network:
-    :param num_eps_samples:
-    :param num_env_rollouts:
-    :return:
-    """
     avg_stand = 0
     returns = list()
     local_env = environment
@@ -361,9 +352,9 @@ if __name__ == "__main__":
         t_time += t
         print(r, _i, t/48, t_time)
         reward_list.append((r, _i, t_time))
-        with open("../data/hopper/gated/save_ESnetWALKgatedant1.pkl", "wb") as f:
+        with open("save_ESnetWALKgatedant1.pkl", "wb") as f:
             pickle.dump(spinal_net, f)
-        with open("../data/hopper/gated/save_rewardgatedant1.pkl", "wb") as f:
+        with open("save_rewardgatedant1.pkl", "wb") as f:
             pickle.dump(reward_list, f)
 
 

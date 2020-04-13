@@ -8,13 +8,13 @@ from Networks.network_modules_numpy import NetworkModule
 
 def compute_returns(seed, environment, network, num_eps_samples, num_env_rollouts=5):
     """
-
-    :param seed:
-    :param environment:
-    :param network:
-    :param num_eps_samples:
-    :param num_env_rollouts:
-    :return:
+    Compute average returns for a set of parameters
+    :param seed: (int) noise sampling seed)
+    :param environment: (str) environment id for training
+    :param network: (Network) network to optimize, containing parameters
+    :param num_eps_samples: (int) number of noise samples
+    :param num_env_rollouts: (int) number of training rollouts to average over
+    :return: (np.ndarray, int) returns and total env interacts
     """
     avg_stand = 0
     returns = list()
@@ -52,7 +52,6 @@ def compute_returns(seed, environment, network, num_eps_samples, num_env_rollout
     return np.array(returns), total_env_interacts
 
 
-
 class ParamSampler:
     def __init__(self, sample_type, num_eps_samples, noise_std=0.01):
         """
@@ -83,7 +82,7 @@ class ParamSampler:
 
         sample = None
         if self.sample_type == "antithetic":
-            epsilon_half = rand_m.randn(num_eps_samples//2, params.size)
+            epsilon_half = rand_m.randn(num_eps_samples // 2, params.size)
             sample = np.concatenate([epsilon_half, - epsilon_half]) * self.noise_std
         elif self.sample_type == "normal":
             sample = rand_m.randn(num_eps_samples, params.size) * self.noise_std
@@ -93,16 +92,16 @@ class ParamSampler:
 
 class ESNetwork:
     def __init__(self, params, noise_std=0.01,
-            num_eps_samples=64, sample_type="antithetic"):
+                 num_eps_samples=64, sample_type="antithetic"):
         """
-
-        :param params:
-        :param num_eps_samples:
-        :param sample_type:
+        Evolutionary Strategies network
+        :param params: (np.ndarray) parameters to optimize
+        :param num_eps_samples: (int) number of noise samples
+        :param sample_type: (str) type of noise sampling
         """
         self.params = params
         self.es_optim = ParamSampler(noise_std=noise_std,
-            sample_type=sample_type, num_eps_samples=num_eps_samples)
+                                     sample_type=sample_type, num_eps_samples=num_eps_samples)
 
     def parameters(self):
         """
@@ -142,7 +141,7 @@ class ESNetwork:
 
 class CDPNet(ESNetwork):
     def __init__(self, input_size, output_size, noise_std=0.01,
-            action_noise_std=None, num_eps_samples=64, sample_type="antithetic"):
+                 action_noise_std=None, num_eps_samples=64, sample_type="antithetic"):
         """
         Eligibility Network with reward modulated plastic weights
         :param input_size: (int) size of observation space
@@ -157,34 +156,25 @@ class CDPNet(ESNetwork):
         self.ff_connectivity_type = "linear"  # connectivity type -- eligibility
 
         recur_ff1_meta = {
-            "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
+            "clip": 1, "activation": identity, "input_size": input_size, "output_size": 32}
         self.recur_plastic_ff1 = \
             NetworkModule(self.ff_connectivity_type, recur_ff1_meta)
         self.params.append(self.recur_plastic_ff1)
-        #recur_ff2_meta = {
-        #    "clip":1, "activation": identity, "input_size": 64, "output_size": 32}
-        #self.recur_plastic_ff2 = \
-        #    NetworkModule(self.ff_connectivity_type, recur_ff2_meta)
-        #self.params.append(self.recur_plastic_ff2)
+
         recur_ff3_meta = {
-            "clip":1, "activation": identity, "input_size": 32, "output_size": output_size}
+            "clip": 1, "activation": identity, "input_size": 32, "output_size": output_size}
         self.recur_plastic_ff3 = \
-            NetworkModule("linear", recur_ff3_meta)
+            NetworkModule("simple_neuromod_recurrent", recur_ff3_meta)
         self.params.append(self.recur_plastic_ff3)
 
         gate_ff1_meta = {
-            "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
+            "clip": 1, "activation": identity, "input_size": input_size, "output_size": 32}
         self.gate_ff1 = \
             NetworkModule("linear", gate_ff1_meta)
         self.params.append(self.gate_ff1)
-        #gate_ff2_meta = {
-        #    "clip":1, "activation": identity, "input_size": 32, "output_size": 32}
-        #self.gate_ff2 = \
-        #    NetworkModule(self.ff_connectivity_type, gate_ff2_meta)
-        #self.params.append(self.gate_ff2)
 
         super(CDPNet, self).__init__(noise_std=noise_std,
-            params=self.params, num_eps_samples=num_eps_samples, sample_type=sample_type)
+                                     params=self.params, num_eps_samples=num_eps_samples, sample_type=sample_type)
 
     def reset(self):
         """
@@ -201,42 +191,38 @@ class CDPNet(ESNetwork):
         :return: (ndarray) post synaptic activity at final layer
         """
         pre_synaptic_gate1 = x
-        gated_activity1 = np.where(1/(1 + np.exp(
+        gated_activity1 = np.where(1 / (1 + np.exp(
             -self.gate_ff1.forward(pre_synaptic_gate1))) >= 0.5, 1.0, 0.0)
-
-        #gated_activity2 = np.where(1/(1 + np.exp(
-        #    -self.gate_ff2.forward(gated_activity1))) >= 0.5, 1.0, 0.0)
 
         pre_synaptic_ff1 = x
         post_synaptic_ff1 = np.tanh(
             self.recur_plastic_ff1.forward(pre_synaptic_ff1)) * gated_activity1
-
-        #pre_synaptic_ff2 = post_synaptic_ff1
-        #post_synaptic_ff2 = np.tanh(
-        #    self.recur_plastic_ff2.forward(pre_synaptic_ff2)) #* gated_activity2
 
         pre_synaptic_ff3 = post_synaptic_ff1
         post_synaptic_ff3 = \
             self.recur_plastic_ff3.forward(pre_synaptic_ff3)
 
         if self.action_noise_std is not None:
-            x += np.random.randn(*x.shape)*self.action_noise_std
+            x += np.random.randn(*x.shape) * self.action_noise_std
 
         return post_synaptic_ff3
 
 
 class EvolutionaryOptimizer:
     def __init__(self, network, num_workers=2, epsilon_samples=48, learning_rate_limit=0.001,
-            environment_id="Pendulum-v0", learning_rate=0.01, weight_decay=0.01, max_iterations=2000):
+                 environment_id="Pendulum-v0", learning_rate=0.01, weight_decay=0.01, max_iterations=2000):
         """
-
-        :param network:
-        :param num_workers:
-        :param epsilon_samples:
-        :param environment_id:
-        :param learning_rate:
+        Initialization function for Natural Evolutionary Strategies (OpenAI-ES)
+        :param network: (Network) numpy artificial neural network
+        :param num_workers: (int) number of training instances to parallelize
+        :param epsilon_samples: (int) number of noise samples per pseudo-gradient update
+        :param environment_id: (str) training environment ID
+        :param weight_decay: (float) penalty scale for large weight values
+        :param max_iterations: (int) maximum training iterations
+        :param learning_rate: (float) update learning rate
+        :param learning_rate_limit: (float) learning rate decay limit
         """
-        assert (epsilon_samples % num_workers == 0), "Epsilon sample size not divis num workers"
+        assert (epsilon_samples % num_workers == 0), "Epsilon sample size not divisible by num workers"
         self.network = network
         self.num_workers = num_workers
         self.weight_decay = weight_decay
@@ -256,7 +242,7 @@ class EvolutionaryOptimizer:
         """
         worker_id, seed = x
         return compute_returns(seed=seed, environment=self.environments[worker_id],
-            network=self.network, num_eps_samples=self.epsilon_samples//self.num_workers)
+                               network=self.network, num_eps_samples=self.epsilon_samples // self.num_workers)
 
     def compute_weight_decay(self, weight_decay, model_param_list):
         """
@@ -277,7 +263,8 @@ class EvolutionaryOptimizer:
         samples = list()
         timestep_list = list()
         sample_returns = list()
-        random_seeds = [(_, iteration*self.num_workers + _) for _ in range(self.num_workers)]
+        random_seeds = [
+            (_, iteration * self.num_workers + _) for _ in range(self.num_workers)]
         with Pool(self.num_workers) as p:
             values = p.map(func=self.parallel_returns, iterable=random_seeds)
 
@@ -290,12 +277,10 @@ class EvolutionaryOptimizer:
             total_timesteps += timesteps
             sample_returns += returns.tolist()
             samples += [self.network.generate_eps_samples(
-                seed[1], self.epsilon_samples//self.num_workers)]
+                seed[1], self.epsilon_samples // self.num_workers)]
 
         eps = np.concatenate(samples)
         returns = np.array(sample_returns)
-
-        #print(np.sum(returns)/len(returns))
 
         # rank sort and convert rewards
         ret_len = len(returns)
@@ -306,10 +291,12 @@ class EvolutionaryOptimizer:
         returns.sort(key=lambda x: x[0])
         returns = np.array([_r[2] for _r in returns])
 
+        # weight decay functionality
         if self.weight_decay > 0:
             l2_decay = self.compute_weight_decay(self.weight_decay, eps)
             returns += l2_decay
 
+        # normalize returns
         returns = (returns - np.mean(returns)) / (returns.std() + 1e-5)
 
         # compute weight update
@@ -319,18 +306,20 @@ class EvolutionaryOptimizer:
         ratio, theta = self.optimizer.update(-change_mu)
         self.network.update_params(theta, add_eps=False)
 
-        self.learning_rate = (1-(iteration/self.max_iterations))\
-            *self.learning_rate + (iteration/self.max_iterations)*self.learning_rate_limit
+        # update learning rate
+        self.learning_rate = (1 - (iteration / self.max_iterations)) \
+                             * self.learning_rate + (iteration / self.max_iterations) * self.learning_rate_limit
 
+        # compute return average
         avg_return_rec = sum(sample_returns) / len(sample_returns)
         return avg_return_rec, total_timesteps
 
 
 if __name__ == "__main__":
     t_time = 0.0
-    #import pybullet_envs
+    # import pybullet_envs
 
-    env_id = "CrippledHopper-v0"
+    env_id = "CrippledAnt-v0"
     envrn = gym.make(env_id)
 
     envrn.reset()
@@ -340,7 +329,7 @@ if __name__ == "__main__":
         envrn.observation_space.shape[0],
         envrn.action_space.shape[0],
         action_noise_std=0.0,
-        num_eps_samples=48,
+        num_eps_samples=48*7,
         noise_std=0.02,
     )
 
@@ -348,36 +337,21 @@ if __name__ == "__main__":
         spinal_net,
         environment_id=env_id,
         num_workers=2,
-        epsilon_samples=48,
+        epsilon_samples=48*7,
         learning_rate=0.01,
         learning_rate_limit=0.001,
         max_iterations=1000
     )
 
     import pickle
+
     reward_list = list()
     for _i in range(es_optim.max_iterations):
         r, t = es_optim.update(_i)
         t_time += t
-        print(r, _i, t/48, t_time)
+        print(r, _i, t / 48, t_time)
         reward_list.append((r, _i, t_time))
-        with open("../data/hopper/gated/save_ESnetWALKgatedant1.pkl", "wb") as f:
+        with open("save_ESnetWALKgatedant2.pkl", "wb") as f:
             pickle.dump(spinal_net, f)
-        with open("../data/hopper/gated/save_rewardgatedant1.pkl", "wb") as f:
+        with open("save_rewardgatedant2.pkl", "wb") as f:
             pickle.dump(reward_list, f)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

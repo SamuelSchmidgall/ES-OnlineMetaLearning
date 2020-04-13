@@ -1,21 +1,13 @@
-import gym
 import numpy as np
 from copy import deepcopy
-from multiprocessing import Pool
 from Networks.utils import *
-from Networks.network_modules_numpy import NetworkModule
+
+from multiprocessing import Pool
+from Networks.network_modules_numpy import NetworkModule, Parameter
 
 
-def compute_returns(seed, environment, network, num_eps_samples, num_env_rollouts=5):
-    """
 
-    :param seed:
-    :param environment:
-    :param network:
-    :param num_eps_samples:
-    :param num_env_rollouts:
-    :return:
-    """
+def compute_returns(seed, environment, network, num_eps_samples, num_env_rollouts1=10, num_env_rollouts2=5):
     avg_stand = 0
     returns = list()
     local_env = environment
@@ -30,25 +22,27 @@ def compute_returns(seed, environment, network, num_eps_samples, num_env_rollout
         network = deepcopy(network_cpy)
         network.update_params(eps_samples[_sample])
 
-        # iterate through the target number of env rollouts
-        for _roll in range(num_env_rollouts):
-            network.reset()
-            state = local_env.reset()
-            # run the simulation until it terminates or max env interation terminates it
-            for _inter in range(max_env_interacts):
-                # forward propagate using noisy weights and plasticity values, also update trace
-                state = state.reshape((1, state.size))
-                action = network.forward(state)[0]
-                action = np.clip(action, a_min=-1, a_max=1)
-                # interact with environment
-                state, reward, game_over, _ = local_env.step(action)
-                return_avg += reward
-                # end sim iteration if termination state reached
-                if game_over:
-                    break
-                avg_stand += 1
-                total_env_interacts += 1
-        returns.append(return_avg / num_env_rollouts)
+        for _roll2 in range(num_env_rollouts2):
+            network.reset_lifetime()
+            # iterate through the target number of env rollouts
+            for _roll1 in range(num_env_rollouts1):
+                network.reset_run(0.0)
+                state = local_env.reset()
+                # run the simulation until it terminates or max env interation terminates it
+                for _inter in range(max_env_interacts):
+                    # forward propagate using noisy weights and plasticity values, also update trace
+                    state = state.reshape((1, state.size))
+                    action = network.forward(state)[0]
+                    action = np.clip(action, a_min=-1, a_max=1)
+                    # interact with environment
+                    state, reward, game_over, _ = local_env.step(action)
+                    return_avg += reward
+                    # end sim iteration if termination state reached
+                    if game_over:
+                        break
+                    avg_stand += 1
+                    total_env_interacts += 1
+        returns.append(return_avg / (num_env_rollouts1*num_env_rollouts2))
     return np.array(returns), total_env_interacts
 
 
@@ -94,12 +88,6 @@ class ParamSampler:
 class ESNetwork:
     def __init__(self, params, noise_std=0.01,
             num_eps_samples=64, sample_type="antithetic"):
-        """
-
-        :param params:
-        :param num_eps_samples:
-        :param sample_type:
-        """
         self.params = params
         self.es_optim = ParamSampler(noise_std=noise_std,
             sample_type=sample_type, num_eps_samples=num_eps_samples)
@@ -140,102 +128,90 @@ class ESNetwork:
             self.params[_param].update_params(param_sample, add_eps=add_eps)
 
 
-class CDPNet(ESNetwork):
-    def __init__(self, input_size, output_size, noise_std=0.01,
-            action_noise_std=None, num_eps_samples=64, sample_type="antithetic"):
-        """
-        Eligibility Network with reward modulated plastic weights
-        :param input_size: (int) size of observation space
-        :param output_size: (int) size of action space
-        :param num_eps_samples: (int) number of epsilon samples (population size)
-        :param sample_type: (str) network noise sampling type
-        """
+class Network(ESNetwork):
+    def __init__(self, input_dim, output_dim, noise_std=0.01, num_eps_samples=64, sample_type="antithetic"):
         self.params = list()  # list of parameters to update
-        self.input_size = input_size  # observation space dimensionality
-        self.output_size = output_size  # action space dimensionality
-        self.action_noise_std = action_noise_std  # action noise standard deviation
-        self.ff_connectivity_type = "eligibility_recurrent"  # connectivity type -- eligibility
 
-        recur_ff1_meta = {
-            "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
-        self.recur_plastic_ff1 = \
-            NetworkModule(self.ff_connectivity_type, recur_ff1_meta)
-        self.params.append(self.recur_plastic_ff1)
-        #recur_ff2_meta = {
-        #    "clip":1, "activation": identity, "input_size": 64, "output_size": 32}
-        #self.recur_plastic_ff2 = \
-        #    NetworkModule(self.ff_connectivity_type, recur_ff2_meta)
-        #self.params.append(self.recur_plastic_ff2)
-        recur_ff3_meta = {
-            "clip":1, "activation": identity, "input_size": 32, "output_size": output_size}
-        self.recur_plastic_ff3 = \
-            NetworkModule("linear", recur_ff3_meta)
-        self.params.append(self.recur_plastic_ff3)
+        # state and action dimensionality, defaults
+        self.default_nodes = 32
+        self.input_dim = input_dim
+        self.output_dim = output_dim
 
-        #gate_ff1_meta = {
-        #    "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
-        #self.gate_ff1 = \
-        #    NetworkModule(self.ff_connectivity_type, gate_ff1_meta)
-        #self.params.append(self.gate_ff1)
-        #gate_ff2_meta = {
-        #    "clip":1, "activation": identity, "input_size": 32, "output_size": 32}
-        #self.gate_ff2 = \
-        #    NetworkModule(self.ff_connectivity_type, gate_ff2_meta)
-        #self.params.append(self.gate_ff2)
+        # meta weights
+        self.eta_w = Parameter(np.zeros(1))
+        self.eta_h = Parameter(np.zeros(1))
+        self.final_bias = Parameter(np.zeros(output_dim))
 
-        super(CDPNet, self).__init__(noise_std=noise_std,
+        self.params.append(self.eta_w)
+        self.params.append(self.eta_h)
+        self.params.append(self.final_bias)
+
+        change_nodes_w1 = {
+            "clip":1, "activation": identity, "input_size": 1, "output_size": self.default_nodes}
+        self.change_nodes_w1 = \
+            NetworkModule("linear", change_nodes_w1)
+        self.params.append(self.change_nodes_w1)
+        change_nodes_w2 = {
+            "clip":1, "activation": identity, "input_size": self.default_nodes, "output_size": 1}
+        self.change_nodes_w2 = \
+            NetworkModule("linear", change_nodes_w2)
+        self.params.append(self.change_nodes_w2)
+
+        # weights
+        self.weight_trace1 = np.zeros((self.input_dim, self.default_nodes))
+        self.weight_trace2 = np.zeros((self.default_nodes, self.output_dim))
+
+        # weight optimized values
+        self.nodes = self.default_nodes
+        self.hebb_trace1 = np.zeros((self.input_dim, self.default_nodes))
+        self.hebb_trace2 = np.zeros((self.default_nodes, self.output_dim))
+        self.hebb_trace1 = deepcopy(self.hebb_trace1) + np.random.random(self.hebb_trace1.shape)*0.0001
+        self.hebb_trace2 = deepcopy(self.hebb_trace2) + np.random.random(self.hebb_trace2.shape)*0.0001
+
+        # templates
+        self.hebb_template1 = deepcopy(self.hebb_trace1)
+        self.hebb_template2 = deepcopy(self.hebb_trace2)
+        self.weight_template1 = deepcopy(self.weight_trace1)
+        self.weight_template2 = deepcopy(self.weight_trace2)
+
+        super(Network, self).__init__(noise_std=noise_std,
             params=self.params, num_eps_samples=num_eps_samples, sample_type=sample_type)
 
-    def reset(self):
-        """
-        Reset inter-lifetime network parameters
-        :return: None
-        """
-        for _param in self.params:
-            _param.reset()
+    def change_nodes(self, run_reward):
+        change_nodes = np.tanh(self.change_nodes_w1.forward(np.array([[run_reward]])))
+        change_nodes = np.round(np.tanh(self.change_nodes_w2.forward(change_nodes)))[0][0]
+        return max(min(self.nodes + change_nodes, 16), 48)
 
-    def forward(self, x):
-        """
-        Forward propagate input value
-        :param x: (ndarray) state input
-        :return: (ndarray) post synaptic activity at final layer
-        """
-        pre_synaptic_gate1 = x
-        #gated_activity1 = np.where(1/(1 + np.exp(
-        #    -self.gate_ff1.forward(pre_synaptic_gate1))) >= 0.5, 1.0, 0.0)
+    def reset_run(self, run_reward):
+        self.weight_trace1 = (1-self.eta_w.val)*self.weight_trace1 + self.eta_w.val*self.hebb_trace1
+        self.weight_trace2 = (1-self.eta_w.val)*self.weight_trace2 + self.eta_w.val*self.hebb_trace2
+        self.nodes = self.change_nodes(run_reward)
 
-        #gated_activity2 = np.where(1/(1 + np.exp(
-        #    -self.gate_ff2.forward(gated_activity1))) >= 0.5, 1.0, 0.0)
+        self.hebb_trace1 = self.weight_trace1
+        self.hebb_trace2 = self.weight_trace2
 
-        pre_synaptic_ff1 = x
-        post_synaptic_ff1 = np.tanh(
-            self.recur_plastic_ff1.forward(pre_synaptic_ff1)) #* gated_activity1
+    def reset_lifetime(self):
+        self.weight_trace1 = self.weight_template1
+        self.weight_trace2 = self.weight_template2
 
-        #pre_synaptic_ff2 = post_synaptic_ff1
-        #post_synaptic_ff2 = np.tanh(
-        #    self.recur_plastic_ff2.forward(pre_synaptic_ff2)) #* gated_activity2
+    def forward(self, state):
+        presynaptic = state
+        post_synaptic = np.matmul(presynaptic, self.hebb_trace1)
+        self.hebb_trace1 = np.clip((1 - self.eta_h.val) * self.hebb_trace1 + \
+                self.eta_h.val * presynaptic.transpose()*post_synaptic, a_min=-1, a_max=1)
 
-        pre_synaptic_ff3 = post_synaptic_ff1
-        post_synaptic_ff3 = \
-            self.recur_plastic_ff3.forward(pre_synaptic_ff3)
+        presynaptic = post_synaptic
+        post_synaptic = np.matmul(presynaptic, self.hebb_trace2)
+        self.hebb_trace2 = np.clip((1 - self.eta_h.val) * self.hebb_trace2 + \
+                self.eta_h.val * presynaptic.transpose()*post_synaptic, a_min=-1, a_max=1)
 
-        if self.action_noise_std is not None:
-            x += np.random.randn(*x.shape)*self.action_noise_std
+        return post_synaptic + self.final_bias.val
 
-        return post_synaptic_ff3
 
 
 class EvolutionaryOptimizer:
     def __init__(self, network, num_workers=2, epsilon_samples=48, learning_rate_limit=0.001,
             environment_id="Pendulum-v0", learning_rate=0.01, weight_decay=0.01, max_iterations=2000):
-        """
-
-        :param network:
-        :param num_workers:
-        :param epsilon_samples:
-        :param environment_id:
-        :param learning_rate:
-        """
         assert (epsilon_samples % num_workers == 0), "Epsilon sample size not divis num workers"
         self.network = network
         self.num_workers = num_workers
@@ -326,45 +302,72 @@ class EvolutionaryOptimizer:
         return avg_return_rec, total_timesteps
 
 
+
+import gym
+
 if __name__ == "__main__":
     t_time = 0.0
-    import pybullet_envs
+    #import pybullet_envs
 
-    env_id = "CrippledAnt-v0"
+    env_id = "CrippledHopper-v0"
     envrn = gym.make(env_id)
 
     envrn.reset()
     envrn.env.ES = True
 
-    spinal_net = CDPNet(
+    net = Network(
         envrn.observation_space.shape[0],
         envrn.action_space.shape[0],
-        action_noise_std=0.0,
-        num_eps_samples=48*6,
-        noise_std=0.02,
+        num_eps_samples=128,
+        noise_std=0.01,
     )
 
     es_optim = EvolutionaryOptimizer(
-        spinal_net,
+        net,
         environment_id=env_id,
-        num_workers=6,
-        epsilon_samples=48*6,
+        num_workers=4,
+        epsilon_samples=128,
         learning_rate=0.01,
         learning_rate_limit=0.001,
         max_iterations=1000
     )
 
-    import pickle
     reward_list = list()
     for _i in range(es_optim.max_iterations):
-        r, t = es_optim.update(_i)
-        t_time += t
-        print(r, _i, t/48, t_time)
-        reward_list.append((r, _i, t_time))
-        with open("save_ESnetWALK1.pkl", "wb") as f:
-            pickle.dump(spinal_net, f)
-        with open("save_reward1.pkl", "wb") as f:
-            pickle.dump(reward_list, f)
+        r, _ = es_optim.update(_i)
+        print(r, _i)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

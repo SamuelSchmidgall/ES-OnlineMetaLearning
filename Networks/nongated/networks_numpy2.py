@@ -157,7 +157,7 @@ class CDPNet(ESNetwork):
         self.ff_connectivity_type = "linear" #"eligibility"  # connectivity type -- eligibility
 
         recur_ff1_meta = {
-            "clip":1, "activation": identity, "input_size": input_size, "output_size": 48}
+            "clip":1, "activation": identity, "input_size": input_size, "output_size": 32}
         self.recur_plastic_ff1 = \
             NetworkModule(self.ff_connectivity_type, recur_ff1_meta)
         self.params.append(self.recur_plastic_ff1)
@@ -167,7 +167,7 @@ class CDPNet(ESNetwork):
         #    NetworkModule(self.ff_connectivity_type, recur_ff2_meta)
         #self.params.append(self.recur_plastic_ff2)
         recur_ff3_meta = {
-            "clip":1, "activation": identity, "input_size": 48, "output_size": output_size}
+            "clip":1, "activation": identity, "input_size": 32, "output_size": output_size}
         self.recur_plastic_ff3 = \
             NetworkModule(self.ff_connectivity_type, recur_ff3_meta)
         self.params.append(self.recur_plastic_ff3)

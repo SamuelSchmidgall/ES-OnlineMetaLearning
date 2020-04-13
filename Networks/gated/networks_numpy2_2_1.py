@@ -361,9 +361,9 @@ if __name__ == "__main__":
         t_time += t
         print(r, _i, t/48, t_time)
         reward_list.append((r, _i, t_time))
-        with open("../data/hopper/gated/save_ESnetWALKgatedant2.pkl", "wb") as f:
+        with open("save_ESnetWALKgatedant2.pkl", "wb") as f:
             pickle.dump(spinal_net, f)
-        with open("../data/hopper/gated/save_rewardgatedant2.pkl", "wb") as f:
+        with open("save_rewardgatedant2.pkl", "wb") as f:
             pickle.dump(reward_list, f)
 
 
