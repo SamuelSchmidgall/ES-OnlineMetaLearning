@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ES-OnlineMetaLearning.iml" filepath="$PROJECT_DIR$/.idea/ES-OnlineMetaLearning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ImpossibleArcade/.idea/ImpossibleArcade.iml" filepath="$PROJECT_DIR$/../ImpossibleArcade/.idea/ImpossibleArcade.iml" />
       <module fileurl="file://$PROJECT_DIR$/../RodentNavigation/.idea/RatNavigation.iml" filepath="$PROJECT_DIR$/../RodentNavigation/.idea/RatNavigation.iml" />
       <module fileurl="file://$PROJECT_DIR$/../gym/.idea/gym.iml" filepath="$PROJECT_DIR$/../gym/.idea/gym.iml" />
+      <module fileurl="file://$USER_HOME$/Downloads/rex-gym-master/.idea/rex-gym-master.iml" filepath="$USER_HOME$/Downloads/rex-gym-master/.idea/rex-gym-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/../spiking/.idea/spiking.iml" filepath="$PROJECT_DIR$/../spiking/.idea/spiking.iml" />
     </modules>
   </component>

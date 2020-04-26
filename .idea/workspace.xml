@@ -2,37 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ea8e2f3-879f-4cf6-9232-63ae44ae55f0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Networks/data/tmp_single_legant/save_ESnetWALKgatedant1.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Networks/data/tmp_single_legant/save_ESnetWALKgatedant2.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Networks/data/tmp_single_legant/save_ESnetWALKgatedant3.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ES-OnlineMetaLearning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ES-OnlineMetaLearning.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_ESnetWALKgatedant1.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_ESnetWALKgatedant2.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_ESnetWALKgatedant3.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_rewardgatedant1.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_rewardgatedant2.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/gated/save_rewardgatedant3.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_ESnetWALK2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_ESnetWALK2.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward2.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward21.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward21.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward22.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/data/hopper/nongated/save_reward22.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated/networks_numpy2_2_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LearnedNetworks/learned_network.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/save_ESnetWALKgatedant0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated_plastic/save_ESnetWALKgatedant0.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/save_ESnetWALKgatedant1.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated_plastic/save_ESnetWALKgatedant1.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/save_ESnetWALKgatedant2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated_plastic/save_ESnetWALKgatedant2.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/save_rewardgatedant0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated_plastic/save_rewardgatedant0.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/save_rewardgatedant1.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated_plastic/save_rewardgatedant1.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networks/gated_plastic/save_rewardgatedant2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/gated_plastic/save_rewardgatedant2.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Networks/network_modules_numpy.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/network_modules_numpy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/networks_numpy.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/networks_numpy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/networks_numpy2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/networks_numpy2_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/nongated/networks_numpy2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/nongated/networks_numpy2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/nongated/networks_numpy21.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/nongated/networks_numpy21.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/nongated/networks_numpy22.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/nongated/networks_numpy22.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Networks/quadruped_visualize.py" beforeDir="false" afterPath="$PROJECT_DIR$/Networks/quadruped_visualize.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RodentNavigation/.idea/RatNavigation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../RodentNavigation/.idea/RatNavigation.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +29,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../ImpossibleArcade" />
   </component>
   <component name="ProjectId" id="1Yg62aC6ZlaosLAkIwKqmes1zUn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -59,8 +40,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Networks/data/hopper/gated_plastic" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyDependenciesConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ImpossibleArcade" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -68,99 +49,15 @@
       <recent name="$PROJECT_DIR$/Networks/data/hopper/gated" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Networks/data/hopper/gated_plastic" />
-      <recent name="$PROJECT_DIR$/Networks" />
-      <recent name="$PROJECT_DIR$/Networks/data/tmp_single_legant" />
-      <recent name="$PROJECT_DIR$/Networks/gated_plastic" />
-      <recent name="$PROJECT_DIR$/../gym/gym/envs/mujoco" />
+      <recent name="$PROJECT_DIR$/../spiking/01_Oxford/oxford" />
+      <recent name="$PROJECT_DIR$/../spiking/01_Oxford" />
+      <recent name="$PROJECT_DIR$/../spiking" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/online_continual" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.activity_analysis">
-    <configuration name="activity_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ES-OnlineMetaLearning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/activity_analysis.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="networks_numpy2_0" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ES-OnlineMetaLearning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/gated_plastic" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_0.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="networks_numpy2_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ES-OnlineMetaLearning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/gated_plastic" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="networks_numpy2_2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ES-OnlineMetaLearning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Networks/gated_plastic" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Networks/gated_plastic/networks_numpy2_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="spiking_es" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.test_pong">
+    <configuration name="nmnistMLP" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="spiking" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -168,11 +65,95 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../spiking" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../spiking/02_NMNIST_MLP" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../spiking/spiking_es.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../spiking/02_NMNIST_MLP/nmnistMLP.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="oxfordA2C" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="spiking" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../spiking/01_Oxford" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../spiking/01_Oxford/oxfordA2C.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="oxfordTrain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="spiking" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../spiking/01_Oxford" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../spiking/01_Oxford/oxfordTrain.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pgMLP" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="spiking" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../spiking/04_POLICYGRADIENT" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../spiking/04_POLICYGRADIENT/pgMLP.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_pong" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ImpossibleArcade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../ImpossibleArcade/ImpossibleArcade/Games/Pong" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../ImpossibleArcade/ImpossibleArcade/Games/Pong/test_pong.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -183,11 +164,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.activity_analysis" />
-        <item itemvalue="Python.networks_numpy2_2" />
-        <item itemvalue="Python.networks_numpy2_1" />
-        <item itemvalue="Python.networks_numpy2_0" />
-        <item itemvalue="Python.spiking_es" />
+        <item itemvalue="Python.test_pong" />
+        <item itemvalue="Python.oxfordA2C" />
+        <item itemvalue="Python.nmnistMLP" />
+        <item itemvalue="Python.oxfordTrain" />
+        <item itemvalue="Python.pgMLP" />
       </list>
     </recent_temporary>
   </component>
@@ -205,66 +186,82 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="588" y="370" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586791385283">
+    <state x="588" y="370" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587749818249">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="588" y="370" key="#com.intellij.fileTypes.FileTypeChooser/65.24.1855.1056@65.24.1855.1056" timestamp="1586791385283" />
+    <state x="588" y="370" key="#com.intellij.fileTypes.FileTypeChooser/65.24.1855.1056@65.24.1855.1056" timestamp="1587749818249" />
     <state x="730" y="302" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586626999693">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="730" y="302" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586626999693" />
-    <state x="780" y="311" key="FileChooserDialogImpl" timestamp="1586296001753">
+    <state x="567" y="448" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog" timestamp="1586906711834">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="780" y="311" key="FileChooserDialogImpl/65.24.1855.1056@65.24.1855.1056" timestamp="1586296001753" />
-    <state width="1832" height="284" key="GridCell.Tab.0.bottom" timestamp="1586806407521">
+    <state x="567" y="448" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586906711834" />
+    <state x="780" y="311" key="FileChooserDialogImpl" timestamp="1587931764686">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1832" height="284" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1586806407520" />
-    <state width="1832" height="284" key="GridCell.Tab.0.center" timestamp="1586806407519">
+    <state x="780" y="311" key="FileChooserDialogImpl/65.24.1855.1056@65.24.1855.1056" timestamp="1587931764686" />
+    <state width="905" height="334" key="GridCell.Tab.0.bottom" timestamp="1587932837623">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1832" height="284" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1586806407519" />
-    <state width="1832" height="284" key="GridCell.Tab.0.left" timestamp="1586806407519">
+    <state width="905" height="334" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1587932837623" />
+    <state width="905" height="334" key="GridCell.Tab.0.center" timestamp="1587932837623">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1832" height="284" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1586806407519" />
-    <state width="1832" height="284" key="GridCell.Tab.0.right" timestamp="1586806407520">
+    <state width="905" height="334" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1587932837623" />
+    <state width="905" height="334" key="GridCell.Tab.0.left" timestamp="1587932837622">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1832" height="284" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1586806407520" />
-    <state width="1832" height="365" key="GridCell.Tab.1.bottom" timestamp="1586734779272">
+    <state width="905" height="334" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1587932837622" />
+    <state width="905" height="334" key="GridCell.Tab.0.right" timestamp="1587932837623">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1832" height="365" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1586734779272" />
-    <state width="1832" height="365" key="GridCell.Tab.1.center" timestamp="1586734779271">
+    <state width="905" height="334" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1587932837623" />
+    <state width="905" height="334" key="GridCell.Tab.1.bottom" timestamp="1587932837624">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1832" height="365" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1586734779271" />
-    <state width="1832" height="365" key="GridCell.Tab.1.left" timestamp="1586734779266">
+    <state width="905" height="334" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1587932837624" />
+    <state width="905" height="334" key="GridCell.Tab.1.center" timestamp="1587932837624">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1832" height="365" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1586734779266" />
-    <state width="1832" height="365" key="GridCell.Tab.1.right" timestamp="1586734779271">
+    <state width="905" height="334" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1587932837624" />
+    <state width="905" height="334" key="GridCell.Tab.1.left" timestamp="1587932837624">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1832" height="365" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1586734779271" />
-    <state x="486" y="188" key="SettingsEditor" timestamp="1586652594558">
+    <state width="905" height="334" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1587932837624" />
+    <state width="905" height="334" key="GridCell.Tab.1.right" timestamp="1587932837624">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="486" y="188" key="SettingsEditor/65.24.1855.1056@65.24.1855.1056" timestamp="1586652594558" />
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586714757014">
+    <state width="905" height="334" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1587932837624" />
+    <state x="486" y="188" key="SettingsEditor" timestamp="1587931790185">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586714757014" />
+    <state x="486" y="188" key="SettingsEditor/65.24.1855.1056@65.24.1855.1056" timestamp="1587931790185" />
+    <state width="928" height="542" key="XDebugger.FullValuePopup" timestamp="1587875121600">
+      <screen x="65" y="24" width="1855" height="1056" />
+    </state>
+    <state width="928" height="542" key="XDebugger.FullValuePopup/65.24.1855.1056@65.24.1855.1056" timestamp="1587875121600" />
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1587244012786">
+      <screen x="65" y="24" width="1855" height="1056" />
+    </state>
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1587244012786" />
     <state x="647" y="157" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1586652344290">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="647" y="157" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/65.24.1855.1056@65.24.1855.1056" timestamp="1586652344290" />
-    <state x="655" y="236" width="672" height="678" key="search.everywhere.popup" timestamp="1586626926470">
+    <state x="526" y="258" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1587872803232">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="655" y="236" width="672" height="678" key="search.everywhere.popup/65.24.1855.1056@65.24.1855.1056" timestamp="1586626926470" />
+    <state x="526" y="258" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/65.24.1855.1056@65.24.1855.1056" timestamp="1587872803232" />
+    <state x="640" y="147" width="704" height="783" key="find.popup" timestamp="1587148791614">
+      <screen x="65" y="24" width="1855" height="1056" />
+    </state>
+    <state x="640" y="147" width="704" height="783" key="find.popup/65.24.1855.1056@65.24.1855.1056" timestamp="1587148791614" />
+    <state x="655" y="236" width="672" height="678" key="search.everywhere.popup" timestamp="1587077911266">
+      <screen x="65" y="24" width="1855" height="1056" />
+    </state>
+    <state x="655" y="236" width="672" height="678" key="search.everywhere.popup/65.24.1855.1056@65.24.1855.1056" timestamp="1587077911266" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -283,6 +280,31 @@
           <url>file://$PROJECT_DIR$/../bindsnet/bindsnet/pipeline/action.py</url>
           <line>109</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Networks/network_modules_numpy.py</url>
+          <line>397</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/online_continual/run_cont.py</url>
+          <line>92</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../spiking/01_Oxford/oxfordTrain.py</url>
+          <line>165</line>
+          <option name="timeStamp" value="226" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../spiking/01_Oxford/oxfordTrain.py</url>
+          <line>90</line>
+          <option name="timeStamp" value="237" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../spiking/01_Oxford/oxfordA2C.py</url>
+          <line>184</line>
+          <option name="timeStamp" value="281" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

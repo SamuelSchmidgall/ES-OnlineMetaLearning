@@ -6,5 +6,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="gym" />
     <orderEntry type="module" module-name="spiking" />
+    <orderEntry type="module" module-name="rex-gym-master" />
+    <orderEntry type="module" module-name="ImpossibleArcade" />
   </component>
 </module>
